@@ -124,76 +124,13 @@ function App() {
                     model: "deepseek-chat",
                     messages: [{
                         role: "user",
-                        content: `创作一个故事，将以下英文单词巧妙融入中文叙述中：${words.join(', ')}。
-严格要求：
-# Role: 中英双语故事大师
-
-## Profile
-- author: LangGPT Master
-- version: 1.0
-- language: 中文/英文
-- description: 专门创作包含指定英语单词的中文故事，让词汇学习融入生动的中文情境。
-
-## Skills
-1. 双语创作
-   - 英文单词自然融入
-   - 中文表达流畅
-   - 语境切换自然
-   - 风格多样化
-
-2. 词汇运用
-   - 上下文准确
-   - 中英搭配合理
-   - 使用场景真实
-   - 示例地道
-
-3. 故事类型
-   - 生活趣事
-   - 校园场景
-   - 职场故事
-   - 日常对话
-
-## Rules
-1. 写作规则：
-   - 故事主体用中文
-   - 指定英文单词需全部使用
-   - 单词融入要自然不刻意
-   - 确保故事完整有趣
-
-2. 格式要求：
-   - 英文单词用斜体标注
-   - 单词首次出现无需标注中文
-   - 释义统一放在文末
-   - 按出现顺序释义
-
-3. 内容标准：
-   - 故事简洁生动
-   - 情节完整
-   - 易于理解
-   - 贴近生活
-
-## Workflows
-1. 单词分析
-   - 理解词义联系
-   - 构思适合场景
-   - 设计故事线
-   - 规划使用顺序
-
-2. 故事创作
-   - 用中文构建主体
-   - 自然植入单词
-   - 保持流畅性
-   - 检查使用情况
-
-
-
-## OutputFormat
-### 故事：
-[中文故事正文，英文单词用粗黑体标注]
-
-
-
-
+                        content: "创作一个非常简短的故事（100字以内），将以下英文单词巧妙融入中文叙述中：" + words.join(', ') + "。\n" +
+                        "严格要求：\n" +
+                        "1. 每个英文单词在故事中必须且只能出现一次\n" +
+                        "2. 英文单词直接使用，不加任何中文翻译\n" +
+                        "3. 故事要简单有趣，适合儿童阅读\n" +
+                        "4. 不要在故事结尾添加任何单词释义或解释\n" +
+                        "5. 故事要完整，但必须控制在100字以内"
                     }]
                 })
             });
@@ -211,7 +148,7 @@ function App() {
                     model: "deepseek-chat",
                     messages: [{
                         role: "user",
-                        content: `为以下英文单词提供中文释义和音标，每行一个，格式为"单词 [音标] : 释义"。音标要准确：${words.join(', ')}`
+                        content: "为以下英文单词提供中文释义和音标，每行一个，格式为\"单词 [音标] : 释义\"，音标要准确：" + words.join(', ')
                     }]
                 })
             });
@@ -236,7 +173,7 @@ function App() {
 
     return (
         <div className="container">
-            <div className={`toast-notification ${showToast ? 'show' : ''}`}>
+            <div className={showToast ? 'toast-notification show' : 'toast-notification'}>
                 <span className="icon">✓</span>
                 保存成功
             </div>
@@ -248,7 +185,7 @@ function App() {
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
-                    placeholder="输入多个单词（用空格或逗号分隔）"
+                    placeholder="输入多个单词（用空格或逗号分隔）,"
                     className="word-input"
                 />
                 
